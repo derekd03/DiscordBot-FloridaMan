@@ -20,4 +20,3 @@ The technologies used are:<br>
   <li>Nodemon</li>
 </ul>
 
-
