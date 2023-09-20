@@ -5,8 +5,8 @@ TechNewsBot is a Discord bot created for the BCIT Dev Hub, which is a registered
 The purpose of the TechNewsBot is to scrape various websites to pull both the title and link and then post( a varying number ) of posts within a server.
 
 These posts currently include:<br>
->-Title of the article
->-A link to the article
->-Articles from HackerNews
+>-Title of the article<br>
+>-A link to the article<br>
+>-Articles from HackerNews<br>
 
 
