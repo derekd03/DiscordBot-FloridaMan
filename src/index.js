@@ -84,5 +84,5 @@ function shuffleArray(array) {
 
 
 client.login(
-    "MTE1MzA3NzI0MTE3ODIyNjcyOA.GRsbFv.MMnH6YLy8mVJGn5b6lkiLAGy1YDMuY7nCpfT8g"
+    //Discord won't let me share the token online, DM me for it to test it out on my bot test server
 );
