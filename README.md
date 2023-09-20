@@ -11,7 +11,7 @@ The purpose of the **TechNewsBot** is to scrape various websites to pull both th
   <li>Currently just articles from HackerNews</li>
 </ul>
 
-<h3>The technologies used are:</h3><br>
+The technologies used are:<br>
 <ul>
   <li>JavaScript</li>
   <li>NodeJS</li>
