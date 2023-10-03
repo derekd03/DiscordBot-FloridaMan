@@ -4,13 +4,13 @@
 
 The purpose of the **TechNewsBot** is to scrape various websites to pull both the title and link and then post( a varying number ) of posts within a server.
 
-This is a fork of the original repository to post florida man articles from FloridaMan.com
+**DiscordBot-FloridaMan** is a fork of the original repository to post florida man articles from FloridaMan.com. **FloridaMan** is a personal customization to suite my niche interest in Florida men.
 
 <h3>These posts currently include:</h3><br>
 <ul>
   <li>The title of the article</li>
   <li>A link to the article/page</li>
-  <li>Articles from FLoridaMan.com</li>
+  <li>Articles from FloridaMan.com</li>
 </ul>
 
 The technologies used are:<br>
