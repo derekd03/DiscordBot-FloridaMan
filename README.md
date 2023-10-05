@@ -21,6 +21,7 @@ The technologies used are:<br>
   <li>DiscordJS</li>
   <li>Nodemon</li>
   <li>Dotenv</li>
+  <li>ChatGPT</li>
 </ul>
 
 Minimum Permissions:<br>
