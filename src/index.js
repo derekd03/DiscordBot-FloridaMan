@@ -77,4 +77,6 @@ client.on('ready', (c) => {
 });
 
 // Logs the bot on Discord
+// Install dotenv by NPM and create a .env file to store your bot's token
+// Only store your token here at your own risk!
 client.login(process.env.CLIENT_AUTH);

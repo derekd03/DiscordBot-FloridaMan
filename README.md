@@ -20,6 +20,7 @@ The technologies used are:<br>
   <li>Puppeteer</li>
   <li>DiscordJS</li>
   <li>Nodemon</li>
+  <li>Dotenv</li>
 </ul>
 
 Minimum Permissions:<br>
