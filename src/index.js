@@ -3,11 +3,9 @@ const checkForNewPosts = require('./redditScraper');
 const { Client, IntentsBitField } = require('discord.js');
 require('discord.js');
 require("dotenv").config();
+const fs = require('fs');
 
-// title of introductory subreddit post to exclude
-const announcementTitle = '/r/FloridaMan - Tips for high quality submissions';
-
-//adds permissions for bot
+// Adds permissions for bot
 const client = new Client({
     intents: [
         IntentsBitField.Flags.Guilds,
@@ -17,8 +15,18 @@ const client = new Client({
     ]
 })
 
-// Define an array to keep track of posted articles
-const postedArticles = [];
+// Define a dictionary to keep track of posted articles
+var postedArticles = {};
+
+// Load saved posted articles from a JSON file (if it exists)
+try {
+    const data = fs.readFileSync('posted_articles.json');
+    postedArticles = JSON.parse(data);
+} catch (err) {
+    postedArticles = {};
+    console.error('(Ignore if this is your first time running this script)\n'
+        + 'Error reading or parsing posted_articles.json:', err);
+}
 
 /*
 // Specify the interval in milliseconds (e.g., 5 minutes)
@@ -37,18 +45,39 @@ client.on('messageCreate', async (message) => {
             // Shuffle the news array randomly
             shuffleArray(news);
 
-            // Filter out articles that have already been posted
-            const newArticles = news.filter(
-                item => !postedArticles.includes(item.title || announcementTitle)
-            );
+            // Title of the introductory subreddit post to exclude
+            const announcementTitle = '/r/FloridaMan - Tips for high quality submissions';
+
+            // Filter out articles that have already been posted in specific guilds (servers)
+            const newArticles = news.filter(item => {
+
+                const title = item.title.toLowerCase();
+
+                return !postedArticles[message.guild.id] ||
+                    !postedArticles[message.guild.id].includes(title) &&
+                    title !== announcementTitle.toLowerCase();
+            });
 
             // Take a single new article
             const randomNews = newArticles.slice(0, 1);
 
             // Add the titles of the new articles to the postedArticles array
             randomNews.forEach(item => {
-                postedArticles.push(item.title);
+
+                const title = item.title.toLowerCase();
+
+                // If this is the first time an article is being posted to a particular server
+                if (!postedArticles[message.guild.id]) {
+                    // Create the array of titles for the server
+                    postedArticles[message.guild.id] = [title];
+                } else {
+                    // If not, push to the existing array for that server
+                    postedArticles[message.guild.id].push(title);
+                }
             });
+
+            // Save the updated postedArticles object to the JSON file
+            fs.writeFileSync('posted_articles.json', JSON.stringify(postedArticles, null, 4));
 
             randomNews.forEach((item, index) => {
                 message.reply(`${item.title}\n${item.link}`);
