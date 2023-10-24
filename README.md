@@ -17,7 +17,7 @@ The technologies used are:<br>
 <ul>
   <li>JavaScript</li>
   <li>NodeJS</li>
-  <li>Puppeteer</li>
+  <li>Snoowrap</li>
   <li>DiscordJS</li>
   <li>Nodemon</li>
   <li>Dotenv</li>
