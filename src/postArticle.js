@@ -3,10 +3,8 @@ const fs = require('fs');
 require('discord.js');
 
 // isEmpty helper function
-function isEmpty(obj) {
-
-    for (var i in obj) { return false; }
-    return true;
+const isEmpty = () => {
+    return Object.keys(this) != 0
 }
 
 // Define a dictionary to keep track of posted articles
