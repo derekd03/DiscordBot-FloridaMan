@@ -11,12 +11,22 @@ const reddit = new snoowrap({
 
 const subreddit = 'FloridaMan';
 
-function scrapeRedditPosts() {
+function scrapeHotPosts() {
 
-    // Fetch a list of posts from the specified subreddit
-    const posts = reddit.getSubreddit(subreddit).getHot({ limit: 100 });
-    // Return the scraped posts
+    const posts = reddit.getSubreddit(subreddit).getHot({ limit: 25 });
     return posts;
 }
 
-module.exports = scrapeRedditPosts;
+function scrapeNewPosts() {
+
+    const posts = reddit.getSubreddit(subreddit).getNew({ limit: 25 });
+    return posts;
+}
+
+function scrapeLatestPost() {
+
+    const post = reddit.getSubreddit(subreddit).getNew();
+    return post;
+}
+
+module.exports = scrapeHotPosts, scrapeNewPosts, scrapeLatestPost;
