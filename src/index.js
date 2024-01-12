@@ -3,6 +3,7 @@ require('discord.js');
 require("dotenv").config();
 const { readGuildData } = require('./fsOperations');
 const command = require('./commands');
+const autoPost = require('./autoPost');
 
 // Adds permissions for bot
 const client = new Client({
@@ -21,9 +22,14 @@ client.on('messageCreate', async (message) => {
     command(message, guildData);
 });
 
+const INTERVAL_MINUTES = 30 
 // Console message to signal that the bot is ready
 client.on('ready', (c) => {
     console.log("Florida Man has joined the game.");
+
+    setInterval(() => {
+        autoPost(guildData, client.channels.cache);
+    }, INTERVAL_MINUTES * 60 * 1000);
 });
 
 // Logs the bot on Discord
