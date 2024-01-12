@@ -2,14 +2,14 @@ const fs = require('fs');
 require('discord.js');
 
 // Define a dictionary to keep track of posted articles
-var postedArticles = {};
+var guildData = {};
 
 // Load saved posted articles from a JSON file (if it exists)
 try {
     const data = fs.readFileSync('guilds.json');
-    postedArticles = JSON.parse(data);
+    guildData = JSON.parse(data);
 } catch (err) {
-    postedArticles = {};
+    guildData = {};
     console.error('(Ignore if this is your first time running this script)\n'
         + 'Error reading or parsing guilds.json:', err);
 }
