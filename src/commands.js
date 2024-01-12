@@ -52,6 +52,7 @@ function command(message, guildData) {
         });
     }
 
+    /*
     if (message.guild && message.content === "/floridaman auto on") {
 
         const channelID = message.channel.id;
@@ -79,6 +80,7 @@ function command(message, guildData) {
             message.reply("Automatic posting in this channel is already disabled.");
         }
     }
+    */
 
     // Save the updated postedArticles object to the JSON file
     writeGuildData(guildData);
