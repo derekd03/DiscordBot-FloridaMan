@@ -25,8 +25,8 @@ function scrapeNewPosts() {
 
 function scrapeLatestPost() {
 
-    const post = reddit.getSubreddit(subreddit).getNew();
+    const post = reddit.getSubreddit(subreddit).getNew({ limit: 1 });
     return post;
 }
 
-module.exports = scrapeHotPosts, scrapeNewPosts, scrapeLatestPost;
+module.exports = { scrapeHotPosts, scrapeNewPosts, scrapeLatestPost };

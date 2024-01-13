@@ -1,8 +1,8 @@
 const postArticle = require('./postArticle');
-const discord = require('discord.js');
 require('dotenv').config();
-const scrapeHotPosts = require('./redditScraper');
-const { isEmpty, getNewArticles } = require('./helpers.js');
+const { scrapeHotPosts } = require('./redditScraper');
+const { isEmpty } = require('./helpers.js');
+const filterArticle = require('./filterArticle.js')
 const { writeGuildData } = require('./fsOperations');
 
 async function autoPost(guildData, channelsCache) {
@@ -15,20 +15,23 @@ async function autoPost(guildData, channelsCache) {
 
             scrapeHotPosts().then(news => {
 
-                const newArticles = getNewArticles(news, guildData, serverId);
+                const article = filterArticle(news, guildData, serverId);
     
-                if (isEmpty(newArticles)) {
-                    channel.send(`No new articles scraped!`);
+                if (isEmpty(article)) {
+    
+                    channel.send(`No new article scraped!`);
                     return;
-                } else {
-                    const randomNews = newArticles[0];
-                    guildData[serverId].articles.push(randomNews.title);
+                }
+    
+                if (!isEmpty(article)) {
+                    
+                    guildData[serverId].articles.push(article.title);
     
                     // Post the new article to each auto-enabled channel
                     for (const channelId of autoChannels) {
                         const channel = channelsCache.get(channelId);
                         if (channel) {
-                            postArticle(randomNews, channel);
+                            postArticle(article, channel);
                         }
                     }
                 }

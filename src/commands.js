@@ -1,10 +1,9 @@
 const postArticle = require('./postArticle');
 require('discord.js');
 require("dotenv").config();
-const scrapeHotPosts = require('./redditScraper');
-const { channel } = require('diagnostics_channel');
-const { getNewArticles } = require('./helpers.js');
+const { scrapeHotPosts } = require('./redditScraper');
 const { writeGuildData } = require('./fsOperations');
+const filterArticle = require('./filterArticle.js');
 
 function command(message, guildData) {
 
@@ -21,14 +20,12 @@ function command(message, guildData) {
 
         scrapeHotPosts().then(news => {
 
-            const newArticles = getNewArticles(news, guildData, serverId);
-
             // Take a single new article
-            const randomNews = newArticles[0];
+            const article = filterArticle(news, guildData, serverId);
 
-            guildData[serverId].articles.push(randomNews.title);
+            guildData[serverId].articles.push(article.title);
 
-            postArticle(randomNews, message.channel);
+            postArticle(article, message.channel);
         });
     }
 
