@@ -18,12 +18,9 @@ async function autoPost(guildData, channelsCache) {
                 const newArticles = getNewArticles(news, guildData, serverId);
     
                 if (isEmpty(newArticles)) {
-    
                     channel.send(`No new articles scraped!`);
                     return;
-                }
-    
-                if (!isEmpty(newArticles)) {
+                } else {
                     const randomNews = newArticles[0];
                     guildData[serverId].articles.push(randomNews.title);
     
