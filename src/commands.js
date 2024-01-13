@@ -57,6 +57,18 @@ function command(message, guildData) {
         }
     }
 
+    // To check the current status of automatic posting in a channel
+    if (message.guild && message.content.toLowerCase() === "/floridaman auto") {
+        
+        const channelId = message.channel.id;
+    
+        if (guildData[serverId].auto.includes(channelId)) {
+            message.reply("Automatic posting in this channel is enabled.");
+        } else {
+            message.reply("Automatic posting in this channel is disabled.");
+        }
+    }
+
     // Save the updated postedArticles object to the JSON file
     writeGuildData(guildData);
 }
