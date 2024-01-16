@@ -1,6 +1,6 @@
 const postArticle = require('./postArticle');
 require('dotenv').config();
-const { scrapeHotPosts } = require('./redditScraper');
+const { scrapeNewestPost } = require('./redditScraper');
 const { isEmpty } = require('./helpers.js');
 const filterArticle = require('./filterArticle.js')
 const { writeGuildData } = require('./fsOperations');
@@ -9,21 +9,17 @@ async function autoPost(guildData, channelsCache) {
 
     for (const serverId in guildData) {
 
+        // Channels in guilds where automatic posting is enabled
         const autoChannels = guildData[serverId].auto;
 
+        // If not empty
         if(autoChannels) {
 
-            scrapeHotPosts().then(news => {
+            scrapeNewestPost().then(news => {
 
                 const article = filterArticle(news, guildData, serverId);
     
-                if (isEmpty(article)) {
-    
-                    channel.send(`No new article scraped!`);
-                    return;
-                }
-    
-                if (!isEmpty(article)) {
+                if (article) {
                     
                     guildData[serverId].articles.push(article.title);
     

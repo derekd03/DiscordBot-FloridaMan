@@ -17,16 +17,22 @@ function scrapeHotPosts() {
     return posts;
 }
 
+function scrapeHottestPost() {
+
+    const posts = reddit.getSubreddit(subreddit).getHot({ limit: 1 });
+    return posts;
+}
+
 function scrapeNewPosts() {
 
     const posts = reddit.getSubreddit(subreddit).getNew({ limit: 25 });
     return posts;
 }
 
-function scrapeLatestPost() {
+function scrapeNewestPost() {
 
     const post = reddit.getSubreddit(subreddit).getNew({ limit: 1 });
     return post;
 }
 
-module.exports = { scrapeHotPosts, scrapeNewPosts, scrapeLatestPost };
+module.exports = { scrapeHotPosts, scrapeHottestPost, scrapeNewPosts, scrapeNewestPost };

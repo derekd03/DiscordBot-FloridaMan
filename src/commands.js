@@ -1,7 +1,7 @@
 const postArticle = require('./postArticle');
 require('discord.js');
 require("dotenv").config();
-const { scrapeHotPosts } = require('./redditScraper');
+const { scrapeHotPosts, scrapeHottestPost, scrapeNewPosts, scrapeNewestPost } = require('./redditScraper');
 const { writeGuildData } = require('./fsOperations');
 const filterArticle = require('./filterArticle.js');
 
@@ -18,14 +18,71 @@ function command(message, guildData) {
 
         message.reply('Loading...');
 
-        scrapeHotPosts().then(news => {
+        scrapeHotPosts().then(articles => {
 
             // Take a single new article
-            const article = filterArticle(news, guildData, serverId);
+            const article = filterArticle(articles, guildData, serverId);
 
-            guildData[serverId].articles.push(article.title);
+            if (article) {
+                guildData[serverId].articles.push(article.title);
+                postArticle(article, message.channel);
+            } else {
+                message.reply("No new articles found.");
+            }
+        });
+    }
 
-            postArticle(article, message.channel);
+    if (message.guild && message.content.toLowerCase() === "/floridaman new") {
+
+        message.reply('Loading...');
+
+        scrapeNewPosts().then(articles => {
+
+            // Take a single new article
+            const article = filterArticle(articles, guildData, serverId);
+
+            if (article) {
+                guildData[serverId].articles.push(article.title);
+                postArticle(article, message.channel);
+            } else {
+                message.reply("No new articles found.");
+            }
+        });
+    }
+
+    if (message.guild && message.content.toLowerCase() === "/floridaman hottest") {
+
+        message.reply('Loading...');
+
+        scrapeHottestPost().then(articles => {
+
+            // Take a single new article
+            const article = filterArticle(articles, guildData, serverId, true);
+
+            if (article) {
+                guildData[serverId].articles.push(article.title);
+                postArticle(article, message.channel);
+            } else {
+                message.reply("No new articles found.");
+            }
+        });
+    }
+
+    if (message.guild && message.content.toLowerCase() === "/floridaman newest") {
+
+        message.reply('Loading...');
+
+        scrapeNewestPost().then(articles => {
+
+            // Take a single new article
+            const article = filterArticle(articles, guildData, serverId, true);
+
+            if (article) {
+                guildData[serverId].articles.push(article.title);
+                postArticle(article, message.channel);
+            } else {
+                message.reply("No new articles found.");
+            }
         });
     }
 
