@@ -21,7 +21,7 @@ function command(message, guildData) {
         scrapeHotPosts().then(articles => {
 
             // Take a single new article
-            const article = filterArticle(articles, guildData, serverId);
+            const article = filterArticle(articles, guildData, serverId, false);
 
             if (article) {
                 guildData[serverId].articles.push(article.title);
@@ -39,7 +39,7 @@ function command(message, guildData) {
         scrapeNewPosts().then(articles => {
 
             // Take a single new article
-            const article = filterArticle(articles, guildData, serverId);
+            const article = filterArticle(articles, guildData, serverId, false);
 
             if (article) {
                 guildData[serverId].articles.push(article.title);

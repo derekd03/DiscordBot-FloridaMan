@@ -1,5 +1,5 @@
 // Automatic posting interval
 
-const INTERVAL_MINUTES = 30;
+const INTERVAL_MINUTES = 1;
 
 module.exports = { INTERVAL_MINUTES };
