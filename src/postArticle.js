@@ -16,7 +16,7 @@ try {
 
 function postArticle(article, channel) {
 
-    const title = article.title.toLowerCase();
+    const title = article.title;
     const url = article.url;
 
     channel.send(`${title}\n${url}`);

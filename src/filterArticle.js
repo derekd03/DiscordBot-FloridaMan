@@ -3,7 +3,7 @@ const { shuffleArray } = require('./helpers');
 function filterArticle(articles, guildData, serverId, onlyAnnouncementCheck = false) {
     
     // Title of the introductory subreddit post to exclude
-    const announcementTitle = '/r/FloridaMan - Tips for high quality submissions'.toLowerCase();
+    const announcementTitle = '/r/FloridaMan - Tips for high quality submissions';
 
     // Get the articles for the current server
     const serverArticles = guildData[serverId]?.articles || [];
