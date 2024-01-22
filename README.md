@@ -13,6 +13,16 @@ The purpose of the **TechNewsBot** is to scrape various websites to pull both th
   <li>Articles from r/FloridaMan</li>
 </ul>
 
+Commands:
+
+<ul>
+  <li>"/floridaman": random article from the hot category</li>
+  <li>"/floridaman help": to display options</li>
+  <li>"/floridaman new": random article from the new category</li>
+  <li>"/floridaman hottest/newest": hottest or newest article</li>
+  <li>"/floridaman auto on/off": set auto posting of a new article in the channel (30 min. interval by default)</li>
+</ul>
+
 The technologies used are:<br>
 
 <ul>
