@@ -32,7 +32,7 @@ function command(message, guildData) {
         });
     }
 
-    if (message.guild && message.content.toLowerCase() === "/floridaman new") {
+    else if (message.guild && message.content.toLowerCase() === "/floridaman new") {
 
         message.reply('Loading...');
 
@@ -50,7 +50,7 @@ function command(message, guildData) {
         });
     }
 
-    if (message.guild && message.content.toLowerCase() === "/floridaman hottest") {
+    else if (message.guild && message.content.toLowerCase() === "/floridaman hottest") {
 
         message.reply('Loading...');
 
@@ -68,7 +68,7 @@ function command(message, guildData) {
         });
     }
 
-    if (message.guild && message.content.toLowerCase() === "/floridaman newest") {
+    else if (message.guild && message.content.toLowerCase() === "/floridaman newest") {
 
         message.reply('Loading...');
 
@@ -86,7 +86,7 @@ function command(message, guildData) {
         });
     }
 
-    if (message.guild && message.content === "/floridaman auto on") {
+    else if (message.guild && message.content === "/floridaman auto on") {
 
         const channelId = message.channel.id;
 
@@ -100,7 +100,7 @@ function command(message, guildData) {
         }
     }
 
-    if (message.guild && message.content.toLowerCase() === "/floridaman auto off") {
+    else if (message.guild && message.content.toLowerCase() === "/floridaman auto off") {
         
         const channelId = message.channel.id;
     
@@ -115,7 +115,7 @@ function command(message, guildData) {
     }
 
     // To check the current status of automatic posting in a channel
-    if (message.guild && message.content.toLowerCase() === "/floridaman auto") {
+    else if (message.guild && message.content.toLowerCase() === "/floridaman auto") {
         
         const channelId = message.channel.id;
     
@@ -124,6 +124,16 @@ function command(message, guildData) {
         } else {
             message.reply("Automatic posting in this channel is disabled.");
         }
+    }
+
+    else if (message.guild && message.content.toLowerCase() === "/floridaman help") { 
+
+        message.reply(
+            '"/floridaman": random article from the hot category\n' +
+            '"/floridaman new": random article from the new category\n' +
+            '"/floridaman hottest/newest": hottest or newest article\n' +
+            '"/floridaman auto on/off": set auto posting of a new article in the channel (30 min. interval)' 
+        )
     }
 
     // Save the updated postedArticles object to the JSON file
