@@ -10,10 +10,11 @@ The purpose of the **TechNewsBot** is to scrape various websites to pull both th
 <ul>
   <li>The title of the article</li>
   <li>A link to the article/page</li>
-  <li>Articles from FloridaMan.com</li>
+  <li>Articles from r/FloridaMan</li>
 </ul>
 
 The technologies used are:<br>
+
 <ul>
   <li>JavaScript</li>
   <li>NodeJS</li>
@@ -25,12 +26,14 @@ The technologies used are:<br>
 </ul>
 
 Minimum Permissions:<br>
+
 <ul>
   <li>Send Messages</li>
   <li>Embed Links</li>
 </ul>
 
 Minimum Scopes:<br>
+
 <ul>
   <li>bot</li>
   <li>applications.commands.permissions.update</li>
